@@ -1,0 +1,29 @@
+{% extends "base_template.html" %}
+{% block content %}
+    <p> User Notes </p>
+    
+    <ul class = "list-group">
+        {% for post in all_notes %}
+            <li class = "list-group-item">  
+                <ul class = "list-group">
+                    <li class = "list-group-item d-flex justify-content-between align-items-center">
+                        
+                        {{ post.title }}
+                        <large class="text-muted">{{ post.date_created.strftime('%Y-%m-%d-%H-%M') }}</large>
+                        <div>
+                            <a type = "button" class = "btn btn-danger btn-sm, m-1" href = "{{ url_for('views.deleteNote', note_id = post.id) }}" >Delete</a>
+                        </div>
+
+                    </li>
+                    <li class = "list-group-item d-flex justify-content-between align-items-center">
+                        <p class="article-content">{{ post.description }}</p>
+                    </li>
+                </ul>
+            </li>
+            
+        {% endfor %}
+        
+    </ul>
+    
+    
+{% endblock %}
